@@ -1,3 +1,14 @@
+<?php
+
+session_start();
+
+if (!isset($_SESSION['loggedin'])) {
+    header('Location: /pages/login/');
+    exit;
+}
+
+?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -74,7 +85,7 @@
     <main class="container container-uh-huh">
         <div class="row g-4">
             <div class="d-flex justify-content-center align-items-center col-lg-3 col-12">
-                <img src=<?= $img ?> class="img shadow">
+                <img src="assets/img/default.jpg" class="img shadow">
             </div>
             <div class="d-flex col-lg-9 col-12">
                 <div class="flex-fill card shadow c-b">
@@ -94,18 +105,10 @@
                     </div>
                     <div class="row p-3 pt-0 gx-2">
                         <div class="col-auto">
-                            <form action="edit.php" class="p-0 m-0" method="post" enctype="multipart/form-data">
-                                <input type="text" id="name" name="name" value="<?= $name ?>" hidden/>
-                                <input type="text" id="uni" name="uni" value="<?= $uni ?>" hidden/>
-                                <input type="text" id="major" name="major" value="<?= $major ?>" hidden/>
-                                <input type="text" id="motto" name="motto" value="<?= $motto ?>" hidden/>
-                                <input type="text" id="desc" name="desc" value="<?= $desc ?>" hidden/>
-                                <input type="text" id="img" name="img" value="<?= $img ?>" hidden/>
-                                <button type="submit" name="submit" class="btn btn-light bg-nord-accent">Edit Profil</a>
-                            </form>
+                            <a href="/pages/edit/" class="btn btn-light bg-nord-accent">Edit Profil</a>
                         </div>
                         <div class="col-auto">
-                            <a href="index.php" class="btn btn-light bg-nord-accent">Reset</a>
+                            <a href="/" class="btn btn-light bg-nord-accent">Logout</a>
                         </div>
                     </div>
                 </div>

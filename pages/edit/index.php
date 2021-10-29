@@ -1,5 +1,9 @@
-<?
-include "../../lib/db.php";
+<?php
+include "../../lib/db/index.php";
+
+
+
+
 ?>
 
 <html lang="en">
@@ -28,7 +32,7 @@ include "../../lib/db.php";
             height: 100%;
             top: 0;
             left: 0;
-            background: url("./assets/img/bg.svg") no-repeat center center;
+            background: url("../../assets/img/bg.svg") no-repeat center center;
             background-size: cover;
             will-change: transform;
             z-index: -1;
@@ -91,9 +95,14 @@ include "../../lib/db.php";
                         <div class="form-text" id="nameSection">This will be your name.</div>
                     </div>
                     <div class="mb-3">
-                        <label for="uni" class="form-label h6">University</label>
-                        <input type="text" class="form-control" id="uni" name="uni" aria-describedby="uniSection" value="" required/>
-                        <div class="form-text" id="uniSection">This will be your current university.</div>
+                        <label for="nim" class="form-label h6">NIM</label>
+                        <input type="text" class="form-control" id="nim" name="nim" aria-describedby="nimSection" value="" required/>
+                        <div class="form-text" id="nimSection">This will be your current NIM.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="faculty" class="form-label h6">Faculty</label>
+                        <input type="text" class="form-control" id="faculty" name="faculty" aria-describedby="facultySection" value="" required/>
+                        <div class="form-text" id="facultySection">This will be your current faculty.</div>
                     </div>
                     <div class="mb-3">
                         <label for="major" class="form-label h6">Major</label>
@@ -101,14 +110,9 @@ include "../../lib/db.php";
                         <div class="form-text" id="majorSection">This will be your current major.</div>
                     </div>
                     <div class="mb-3">
-                        <label for="name" class="form-label h6">Motto</label>
-                        <input type="text" class="form-control" id="motto" name="motto" aria-describedby="mottoSection" value="" required/>
-                        <div class="form-text" id="mottoSection">This will be your motto.</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="name" class="form-label h6">Description</label>
-                        <input type="text" class="form-control" id="desc" name="desc" aria-describedby="descSection" value="" required/>
-                        <div class="form-text" id="descSection">This will be your description.</div>
+                        <label for="description" class="form-label h6">Description</label>
+                        <input type="text" class="form-control" id="description" name="description" aria-describedby="descriptionSection" value="" required/>
+                        <div class="form-text" id="descriptionSection">This will be your description.</div>
                     </div>
                     <input type="text" id="profimg" name="profimg" value="" hidden/>
                     <div class="container-fluid p-0">

@@ -6,25 +6,25 @@ $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_
 if (mysqli_connect_errno())
     exit("Failed to connect to MySQL: " . mysqli_connect_error());
 
-if (!isset($_POST["username"], $_POST["password"]))
+if (!isset($_POST["uname"], $_POST["pass"]))
     exit("Please fill both the username and password fields!");
 
-if ($stmt = $con->prepare("SELECT id, password FROM accounts WHERE username = ?")) {
-    $stmt->bind_param("s", $_POST["username"]);
+if ($stmt = $con->prepare("SELECT * FROM users WHERE uname = ?")) {
+    $stmt->bind_param("s", $_POST["uname"]);
     $stmt->execute();
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($id, $password);
+        $stmt->bind_result($id, $pass);
         $stmt->fetch();
 
-        if (password_verify($_POST["password"], $password)) {
+        if (password_verify($_POST["pass"], $pass)) {
             session_regenerate_id();
             $_SESSION["loggedin"] = TRUE;
-            $_SESSION["name"] = $_POST["username"];
+            $_SESSION["uname"] = $_POST["uname"];
             $_SESSION["id"] = $id;
 
-            header("Location: /dashboard/");
+            header("Location: /");
         } else {
             echo "Incorrect username and/or password!";
         }
