@@ -15,7 +15,7 @@ if ($stmt = $con->prepare("SELECT * FROM users WHERE uname = ?")) {
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($id, $pass);
+        $stmt->bind_result($id, $pass, $nim, $faculty, $major, $description, $image);
         $stmt->fetch();
 
         if (password_verify($_POST["pass"], $pass)) {
@@ -23,6 +23,11 @@ if ($stmt = $con->prepare("SELECT * FROM users WHERE uname = ?")) {
             $_SESSION["loggedin"] = TRUE;
             $_SESSION["uname"] = $_POST["uname"];
             $_SESSION["id"] = $id;
+            $_SESSION["nim"] = $nim;
+            $_SESSION["faculty"] = $faculty;
+            $_SESSION["major"] = $major;
+            $_SESSION["description"] = $description;
+            $_SESSION["image"] = $image;
 
             header("Location: /");
         } else {

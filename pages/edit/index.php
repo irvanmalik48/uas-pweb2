@@ -114,7 +114,7 @@ include "../../lib/db/index.php";
                         <input type="text" class="form-control" id="description" name="description" aria-describedby="descriptionSection" value="" required/>
                         <div class="form-text" id="descriptionSection">This will be your description.</div>
                     </div>
-                    <input type="text" id="profimg" name="profimg" value="" hidden/>
+                    <input type="text" id="img" name="img" value="" hidden/>
                     <div class="container-fluid p-0">
                         <button type="submit" name="submit" class="btn btn-light bg-nord-accent float-end" value="success">Save</button>
                     </div>
