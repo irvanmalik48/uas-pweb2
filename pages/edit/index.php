@@ -1,8 +1,10 @@
 <?php
-include "../../lib/db/index.php";
+session_start();
 
-
-
+if (!isset($_SESSION['user'])) {
+    header('Location: /pages/login');
+    exit;
+}
 
 ?>
 
@@ -12,65 +14,9 @@ include "../../lib/db/index.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
     <script defer src="../../assets/js/bootstrap.bundle.min.js"></script>
     <title>Edit Profile</title>
-    <style>
-        body {
-            background-color: #434b5f;
-            color: #FFFFFF;
-        }
-        
-        .parallax {
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .parallax::before {
-            content: "";
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background: url("../../assets/img/bg.svg") no-repeat center center;
-            background-size: cover;
-            will-change: transform;
-            z-index: -1;
-        }
-
-        .container-uh-huh {
-            max-width: 900px;
-        }
-
-        .c-b {
-            background-color: #3B425255;
-            backdrop-filter: blur(12px);
-            border: 3px #88C0CF solid;
-            border-radius: 13px;
-        }
-
-        .bg-nord-accent {
-            background-color: #88C0CF;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            color: #3B4252;
-        }
-
-        .bg-nord-accent:hover {
-            background-color: #434b5f;
-            color: #88C0CF;
-        }
-
-        .bg-nord-accent:active {
-            background-color: #3B4252;
-            color: #88C0CF;
-        }
-        
-        .form-text {
-            color: #88C0CF;
-        }
-    </style>
 </head>
 <body>
     <div class="parallax"></div>
@@ -80,43 +26,50 @@ include "../../lib/db/index.php";
                 <h5 class="card-title text-center">
                     Edit Profile
                 </h5>
-                <form action="../../lib/edit.php" method="post" enctype="multipart/form-data">
+                <form action="../../lib/edit/index.php" method="post" enctype="multipart/form-data">
                     <div class="mb-3 mt-4">
-                        <label for="file" class="form-label h6">Upload image</label>
-                        <input class="form-control" type="file" accept="image/*" id="file" name="file" aria-describedby="fileSection"/>
-                        <div class="form-text" id="fileSection">This will be your profile image.</div>
-                        <button type="submit" name="image" class="btn btn-light bg-nord-accent mb-3" value="success-image">Save Image</button>
+                        <label for="image" class="form-label h6">Atur Foto Profil</label>
+                        <input type="text" id="name" name="name" value="<?= $_SESSION['user']['name'] ?>" hidden/>
+                        <input type="text" id="nim" name="nim" value="<?= $_SESSION['user']['nim'] ?>" hidden/>
+                        <input type="text" id="faculty" name="faculty" value="<?= $_SESSION['user']['faculty'] ?>" hidden/>
+                        <input type="text" id="major" name="major" value="<?= $_SESSION['user']['major'] ?>" hidden/>
+                        <input type="text" id="description" name="description" value="<?= $_SESSION['user']['description'] ?>" hidden/>
+                        <input type="text" id="fallbackimg" name="fallbackimg" value="<?= $img ?>" hidden/>
+                        <input class="form-control" type="image" accept="image/*" id="image" name="image" aria-describedby="imageSection"/>
+                        <div class="form-text" id="imageSection">Foto profil anda.</div>
+                        <button type="submit" name="editImage" class="btn btn-light bg-nord-accent float-end">Save Image</button>
                     </div>
                 </form>
-                <form action="../../lib/edit.php" method="post" enctype="multipart/form-data">
+                <form action="../../lib/edit/index.php" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
-                        <label for="name" class="form-label h6">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" aria-describedby="nameSection" value="" required/>
-                        <div class="form-text" id="nameSection">This will be your name.</div>
+                        <label for="name" class="form-label h6">Nama</label>
+                        <input type="text" class="form-control" id="name" name="name" aria-describedby="nameSection" value="<?= $_SESSION['user']['name'] ?>" required/>
+                        <div class="form-text" id="nameSection">Isilah dengan nama asli anda.</div>
                     </div>
                     <div class="mb-3">
                         <label for="nim" class="form-label h6">NIM</label>
-                        <input type="text" class="form-control" id="nim" name="nim" aria-describedby="nimSection" value="" required/>
-                        <div class="form-text" id="nimSection">This will be your current NIM.</div>
+                        <input type="text" class="form-control" id="nim" name="nim" aria-describedby="nimSection" value="<?= $_SESSION['user']['nim'] ?>"/>
+                        <div class="form-text" id="nimSection">Isilah dengan NIM anda.</div>
                     </div>
                     <div class="mb-3">
-                        <label for="faculty" class="form-label h6">Faculty</label>
-                        <input type="text" class="form-control" id="faculty" name="faculty" aria-describedby="facultySection" value="" required/>
-                        <div class="form-text" id="facultySection">This will be your current faculty.</div>
+                        <label for="faculty" class="form-label h6">Fakultas</label>
+                        <input type="text" class="form-control" id="faculty" name="faculty" aria-describedby="facultySection" value="<?= $_SESSION['user']['faculty'] ?>"/>
+                        <div class="form-text" id="facultySection">Fakultas anda sekarang.</div>
                     </div>
                     <div class="mb-3">
-                        <label for="major" class="form-label h6">Major</label>
-                        <input type="text" class="form-control" id="major" name="major" aria-describedby="majorSection" value="" required/>
-                        <div class="form-text" id="majorSection">This will be your current major.</div>
+                        <label for="major" class="form-label h6">Prodi</label>
+                        <input type="text" class="form-control" id="major" name="major" aria-describedby="majorSection" value="<?= $_SESSION['user']['major'] ?>"/>
+                        <div class="form-text" id="majorSection">Prodi yang anda jalani.</div>
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label h6">Description</label>
-                        <input type="text" class="form-control" id="description" name="description" aria-describedby="descriptionSection" value="" required/>
-                        <div class="form-text" id="descriptionSection">This will be your description.</div>
+                        <label for="description" class="form-label h6">Deskripsi</label>
+                        <input type="text" class="form-control" id="description" name="description" aria-describedby="descriptionSection" value="<?= $_SESSION['user']['description'] ?>"/>
+                        <div class="form-text" id="descriptionSection">Deskripsikan mengenai diri anda.</div>
                     </div>
-                    <input type="text" id="img" name="img" value="" hidden/>
+                    <input type="text" id="img" name="img" value="<?= $_SESSION['user']['image'] ?>" hidden/>
+                    <input type="text" id="uname" name="uname" value="<?= $_SESSION['user']['uname'] ?>" hidden/>
                     <div class="container-fluid p-0">
-                        <button type="submit" name="submit" class="btn btn-light bg-nord-accent float-end" value="success">Save</button>
+                        <button type="submit" name="edit" class="btn btn-light bg-nord-accent float-end">Save</button>
                     </div>
                 </form>
                 <a href="/" class="btn btn-light bg-nord-accent float-start">Cancel</a>

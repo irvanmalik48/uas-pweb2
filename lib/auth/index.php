@@ -10,7 +10,7 @@ if(isset($_POST["login"])){
     
     $params = array(
         ":uname" => $uname,
-        ":email" => $email
+        ":email" => $uname
     );
 
     $stmt->execute($params);
@@ -18,9 +18,9 @@ if(isset($_POST["login"])){
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if($user) {
-        if(password_verify($pass, $user["password"])) {
+        if(password_verify($pass, $user["pass"])) {
             session_start();
-            $_SESSION["user"] = $user;
+            $_SESSION['user'] = $user;
             header("Location: /");
         } else {
             header("Location: /pages/login/");

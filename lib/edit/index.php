@@ -2,7 +2,7 @@
 require_once "../db/index.php";
 
 function setImage($dir) {
-    if (isset($_POST['edit'])) {
+    if (isset($_POST['edit']) || isset($_POST['editImage'])) {
         if (isset($_FILES['file']['name'])) {
             $file = $dir . basename($_FILES['file']['name']);
 
@@ -61,7 +61,7 @@ if (isset($_POST["edit"])) {
         ":faculty" => $_POST["faculty"],
         ":major" => $_POST["major"],
         ":description" => $_POST["description"],
-        ":image" => setImage("/assets/img/")
+        ":image" => $_POST["img"]
     );
 
     $saved = $stmt->execute($params);

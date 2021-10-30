@@ -7,33 +7,23 @@ if(isset($_POST['register'])){
     $pass = password_hash($_POST["pass"], PASSWORD_DEFAULT);
     $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
 
-    $stmt = $link->prepare("SELECT uname, email FROM users WHERE uname=:uname AND email=:email");
+    $stmt = $db->prepare("SELECT uname FROM users WHERE uname=:uname");
     $stmt->execute([
-        ":uname" => $uname,
-        ":email" => $email
+        ":uname" => $uname
     ]);
 
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    $exist;
 
-    if (isset($user) && !empty($user)) {
-        $exist = true;
-    } else {
-        $exist = false;
-    }
-
-    if ($exist) {
-        $sql = "INSERT INTO users (name, uname, email, pass) VALUES (:name, :username, :email, :pass)";
+    if (empty($user)) {
+        $sql = "INSERT INTO users (uname, email, pass, name) VALUES (:uname, :email, :pass, :name)";
         $stmt = $db->prepare($sql);
     
-        $params = array(
+        $saved = $stmt->execute([
             ":name" => $name,
             ":uname" => $uname,
             ":pass" => $pass,
             ":email" => $email
-        );
-    
-        $saved = $stmt->execute($params);
+        ]);
         if ($saved)
             header("Location: /pages/login/");
     } else {
