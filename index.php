@@ -2,11 +2,10 @@
 
 session_start();
 
-if (!isset($_SESSION['user'])) {
-    header('Location: /pages/login');
-    exit;
+if (!isset($_SESSION["user"])) {
+    header("Location: /pages/login");
+    exit();
 }
-
 ?>
 
 <html lang="en">
@@ -24,40 +23,42 @@ if (!isset($_SESSION['user'])) {
     <main class="container container-uh-huh">
         <div class="row g-4 justify-content-center align-items-start my-lg-5 py-lg-5 my-2 py-2">
             <div class="d-flex justify-content-center align-items-center col-lg-3 col-12">
-                <img src="<?= $_SESSION['user']['image'] ?>" class="img shadow">
+                <img src="<?= $_SESSION["user"]["image"] ?>" class="img shadow">
             </div>
             <div class="d-flex col-lg-9 col-12">
                 <div class="flex-fill card shadow c-b">
                     <div class="card-body">
                         <h5 class="card-title">
-                            <?= $_SESSION['user']['name'] ?>
+                            <?= $_SESSION["user"]["name"] ?>
                         </h5>
                         <h6 class="card-subtitle mb-2 text-nord-muted">
-                            <?= $_SESSION['user']['email'] . " | @" . $_SESSION['user']['uname'] ?>
+                            <?= $_SESSION["user"]["email"] .
+                                " | @" .
+                                $_SESSION["user"]["uname"] ?>
                         </h6>
                         <p class="text-nord my-0 p-0">
                             <strong>NIM</strong>
                         </p>
                         <p class="mt-0 p-0">
-                            <?= $_SESSION['user']['nim'] ?>
+                            <?= $_SESSION["user"]["nim"] ?>
                         </p>
                         <p class="text-nord my-0 p-0">
                             <strong>FAKULTAS</strong>
                         </p>
                         <p class="mt-0 p-0">
-                            <?= $_SESSION['user']['faculty'] ?>
+                            <?= $_SESSION["user"]["faculty"] ?>
                         </p>
                         <p class="text-nord my-0 p-0">
                             <strong>PRODI</strong>
                         </p>
                         <p class="mt-0 p-0">
-                            <?= $_SESSION['user']['major'] ?>
+                            <?= $_SESSION["user"]["major"] ?>
                         </p>
                         <p class="text-nord my-0 p-0">
                             <strong>DESKRIPSI</strong>
                         </p>
                         <p class="mt-0 p-0 mb-0">
-                            <?= $_SESSION['user']['description'] ?>
+                            <?= $_SESSION["user"]["description"] ?>
                         </p>
                     </div>
                     <div class="container-fluid px-0 py-0">

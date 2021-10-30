@@ -9,7 +9,7 @@
     <title>Login</title>
 </head>
 <body>
-<div class="parallax"></div>
+    <div class="parallax"></div>
     <div class="container container-lr pt-5 pb-5">
         <div class="py-5"></div>
         <div class="card c-b mt-5 shadow">
