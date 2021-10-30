@@ -1,41 +1,29 @@
 <?php
-include "db.php";
+require_once "../db/index.php";
 
-$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+if(isset($_POST["login"])){
+    $uname = filter_input(INPUT_POST, "uname", FILTER_SANITIZE_STRING);
+    $pass = $_POST["pass"];
 
-if (mysqli_connect_errno())
-    exit("Failed to connect to MySQL: " . mysqli_connect_error());
+    $sql = "SELECT * FROM users WHERE uname=:uname OR email=:email";
+    $stmt = $db->prepare($sql);
+    
+    $params = array(
+        ":uname" => $uname,
+        ":email" => $email
+    );
 
-if (!isset($_POST["uname"], $_POST["pass"]))
-    exit("Please fill both the username and password fields!");
+    $stmt->execute($params);
 
-if ($stmt = $con->prepare("SELECT * FROM users WHERE uname = ?")) {
-    $stmt->bind_param("s", $_POST["uname"]);
-    $stmt->execute();
-    $stmt->store_result();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($stmt->num_rows > 0) {
-        $stmt->bind_result($id, $pass, $nim, $faculty, $major, $description, $image);
-        $stmt->fetch();
-
-        if (password_verify($_POST["pass"], $pass)) {
-            session_regenerate_id();
-            $_SESSION["loggedin"] = TRUE;
-            $_SESSION["uname"] = $_POST["uname"];
-            $_SESSION["id"] = $id;
-            $_SESSION["nim"] = $nim;
-            $_SESSION["faculty"] = $faculty;
-            $_SESSION["major"] = $major;
-            $_SESSION["description"] = $description;
-            $_SESSION["image"] = $image;
-
+    if($user) {
+        if(password_verify($pass, $user["password"])) {
+            session_start();
+            $_SESSION["user"] = $user;
             header("Location: /");
         } else {
-            echo "Incorrect username and/or password!";
+            header("Location: /pages/login/");
         }
-    } else {
-        echo "Incorrect username and/or password!";
     }
-
-    $stmt->close();
 }

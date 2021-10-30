@@ -1,7 +1,13 @@
 <?php
 session_start();
 
-$DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'irvanmalik48';
-$DATABASE_PASS = '@irvann48_';
-$DATABASE_NAME = 'pweb2';
+$db_host = 'localhost';
+$db_user = 'irvanmalik48';
+$db_pass = '@irvann48_';
+$db_name = 'pweb2';
+
+try {
+    $db = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
+} catch (PDOException $exception) {
+    die("Error: " . $e -> getMessage());
+}
