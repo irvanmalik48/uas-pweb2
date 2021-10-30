@@ -1,41 +1,37 @@
 <?php
 require_once "../db/index.php";
 
-function setImage($dir) {
-    if (isset($_POST['edit']) || isset($_POST['editImage'])) {
-        if (isset($_FILES['file']['name'])) {
-            $file = $dir . basename($_FILES['file']['name']);
+function setImage($dir, $input, $fallback) {
+    if (isset($input['name'])) {
+        $file = $dir . basename($input['name']);
 
-            $filetype = strtolower(
-                pathinfo($file, PATHINFO_EXTENSION)
-            );
+        $filetype = strtolower(
+            pathinfo($file, PATHINFO_EXTENSION)
+        );
 
-            $checktype = (
-                $filetype == "jpg" ||
-                $filetype == "png" ||
-                $filetype == "jpeg" ||
-                $filetype == "webp" ||
-                $filetype == "gif"
-            );
+        $checktype = (
+            $filetype == "jpg" ||
+            $filetype == "png" ||
+            $filetype == "jpeg" ||
+            $filetype == "webp" ||
+            $filetype == "gif"
+        );
 
-            $checksize = (
-                $_FILES['file']['size'] > 1500000
-            );
+        $checksize = (
+            $_FILES['file']['size'] > 1500000
+        );
 
-            $checkfile = (
-                file_exists($file)
-            );
+        $checkfile = (
+            file_exists($file)
+        );
 
-            if ($file == $dir || !$checktype || $checksize || $checkfile) {
-                return (isset($_POST['fallbackimg']))? $_POST['fallbackimg'] : "/assets/img/default.jpg";
-            }
-
-            move_uploaded_file($_FILES['file']['tmp_name'], $file);
-
-            return $file;
-        } else {
-            return "/assets/img/default.jpg";
+        if ($file == $dir || !$checktype || $checksize || $checkfile) {
+            return (isset($fallback))? $fallback : "/assets/img/default.jpg";
         }
+
+        move_uploaded_file($input['tmp_name'], $file);
+
+        return $file;
     } else {
         return "/assets/img/default.jpg";
     }
@@ -48,8 +44,7 @@ if (isset($_POST["edit"])) {
             nim = :nim,
             faculty = :faculty,
             major = :major,
-            description = :description,
-            image = :image
+            description = :description
             WHERE
             uname = :uname";
     $stmt = $db->prepare($sql);
@@ -60,11 +55,57 @@ if (isset($_POST["edit"])) {
         ":nim" => $_POST["nim"],
         ":faculty" => $_POST["faculty"],
         ":major" => $_POST["major"],
-        ":description" => $_POST["description"],
-        ":image" => $_POST["img"]
+        ":description" => $_POST["description"]
     );
 
     $saved = $stmt->execute($params);
-    if ($saved)
+
+    $sql = "SELECT * FROM users WHERE uname=:uname";
+    $stmt = $db->prepare($sql);
+    
+    $params = array(
+        ":uname" => $_POST["uname"]
+    );
+
+    $idk = $stmt->execute($params);
+
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($saved) {
+        session_start();
+        $_SESSION['user'] = $user;
         header("Location: /");
+    }
+
+} else if (isset($_POST["editImage"])) {
+    $sql = "UPDATE users
+            SET
+            image = :image
+            WHERE
+            uname = :uname";
+    $stmt = $db->prepare($sql);
+
+    $params = array(
+        ":uname" => $_POST["uname"],
+        ":image" => setImage("../../assets/img/", $_FILES['image'], $_POST['fallbackimg'])
+    );
+
+    $saved = $stmt->execute($params);
+
+    $sql = "SELECT * FROM users WHERE uname=:uname";
+    $stmt = $db->prepare($sql);
+    
+    $params = array(
+        ":uname" => $_POST["uname"]
+    );
+
+    $idk = $stmt->execute($params);
+    
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if ($saved) {
+        session_start();
+        $_SESSION['user'] = $user;
+        header("Location: /");
+    }
 }

@@ -26,16 +26,12 @@ if (!isset($_SESSION['user'])) {
                 <h5 class="card-title text-center">
                     Edit Profile
                 </h5>
-                <form action="../../lib/edit/index.php" method="post" enctype="multipart/form-data">
+                <form class="mb-5 pb-3" action="../../lib/edit/index.php" method="post" enctype="multipart/form-data">
                     <div class="mb-3 mt-4">
                         <label for="image" class="form-label h6">Atur Foto Profil</label>
-                        <input type="text" id="name" name="name" value="<?= $_SESSION['user']['name'] ?>" hidden/>
-                        <input type="text" id="nim" name="nim" value="<?= $_SESSION['user']['nim'] ?>" hidden/>
-                        <input type="text" id="faculty" name="faculty" value="<?= $_SESSION['user']['faculty'] ?>" hidden/>
-                        <input type="text" id="major" name="major" value="<?= $_SESSION['user']['major'] ?>" hidden/>
-                        <input type="text" id="description" name="description" value="<?= $_SESSION['user']['description'] ?>" hidden/>
-                        <input type="text" id="fallbackimg" name="fallbackimg" value="<?= $img ?>" hidden/>
-                        <input class="form-control" type="image" accept="image/*" id="image" name="image" aria-describedby="imageSection"/>
+                        <input type="text" id="fallbackimg" name="fallbackimg" value="<?= $_SESSION['user']['image'] ?>" hidden/>
+                        <input type="text" id="uname" name="uname" value="<?= $_SESSION['user']['uname'] ?>" hidden/>
+                        <input class="form-control" type="file" accept="image/*" id="image" name="image" aria-describedby="imageSection"/>
                         <div class="form-text" id="imageSection">Foto profil anda.</div>
                         <button type="submit" name="editImage" class="btn btn-light bg-nord-accent float-end">Save Image</button>
                     </div>

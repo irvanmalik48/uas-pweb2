@@ -19,9 +19,10 @@ if (!isset($_SESSION['user'])) {
     <title>My Profile</title>
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body class="parallax vh-100 d-flex justify-content-center align-items-center">
+<body class="d-flex justify-content-center align-items-center">
+    <div class="parallax"></div>
     <main class="container container-uh-huh">
-        <div class="row g-4">
+        <div class="row g-4 justify-content-center align-items-start my-lg-5 py-lg-5 my-2 py-2">
             <div class="d-flex justify-content-center align-items-center col-lg-3 col-12">
                 <img src="<?= $_SESSION['user']['image'] ?>" class="img shadow">
             </div>
@@ -34,26 +35,34 @@ if (!isset($_SESSION['user'])) {
                         <h6 class="card-subtitle mb-2 text-nord-muted">
                             <?= $_SESSION['user']['email'] . " | @" . $_SESSION['user']['uname'] ?>
                         </h6>
-                        <p>
-                            NIM: <?= $_SESSION['user']['nim'] ?>
+                        <p class="text-nord my-0 p-0">
+                            <strong>NIM</strong>
                         </p>
-                        <p>
-                            Fakultas: <?= $_SESSION['user']['faculty'] ?>
+                        <p class="mt-0 p-0">
+                            <?= $_SESSION['user']['nim'] ?>
                         </p>
-                        <p>
-                            Prodi: <?= $_SESSION['user']['major'] ?>
+                        <p class="text-nord my-0 p-0">
+                            <strong>FAKULTAS</strong>
                         </p>
-                        <p>
+                        <p class="mt-0 p-0">
+                            <?= $_SESSION['user']['faculty'] ?>
+                        </p>
+                        <p class="text-nord my-0 p-0">
+                            <strong>PRODI</strong>
+                        </p>
+                        <p class="mt-0 p-0">
+                            <?= $_SESSION['user']['major'] ?>
+                        </p>
+                        <p class="text-nord my-0 p-0">
+                            <strong>DESKRIPSI</strong>
+                        </p>
+                        <p class="mt-0 p-0 mb-0">
                             <?= $_SESSION['user']['description'] ?>
                         </p>
                     </div>
-                    <div class="row p-3 pt-0 gx-2">
-                        <div class="col-auto">
-                            <a href="/pages/edit" class="btn btn-light bg-nord-accent">Edit Profil</a>
-                        </div>
-                        <div class="col-auto">
-                            <a href="/pages/logout" class="btn btn-light bg-nord-accent">Logout</a>
-                        </div>
+                    <div class="container-fluid px-0 py-0">
+                        <a href="/pages/edit" class="btn btn-light bg-nord-accent float-start m-2">Edit Profil</a>
+                        <a href="/pages/logout" class="btn btn-light bg-nord-accent-red float-end m-2">Logout</a>
                     </div>
                 </div>
             </div>

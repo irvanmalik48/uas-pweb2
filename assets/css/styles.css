@@ -1,69 +1,91 @@
 body {
-    background-color: #434b5f;
-    color: #FFFFFF;
+  background-color: #434b5f;
+  color: #ffffff;
 }
 
 .parallax {
-    overflow: hidden;
-    position: relative;
+  overflow: hidden;
+  position: relative;
 }
 
 .parallax::before {
-    content: "";
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: url("../img/bg.svg") no-repeat center center;
-    background-size: cover;
-    will-change: transform;
-    z-index: -1;
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: url("../img/bg.svg") no-repeat center center;
+  background-size: cover;
+  will-change: transform;
+  z-index: -1;
 }
 
 .img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
 }
 
 .container-uh-huh {
-    max-width: 900px;
+  max-width: 700px;
 }
 
 .container-lr {
-    max-width: 600px;
+  max-width: 600px;
 }
 
 .c-b {
-    background-color: #3B425255;
-    backdrop-filter: blur(12px);
-    border: 3px #88C0CF solid;
-    border-radius: 13px;
+  background-color: #3b425255;
+  backdrop-filter: blur(12px);
+  border: 3px #88c0cf solid;
+  border-radius: 13px;
 }
 
 .bg-nord-accent {
-    background-color: #88C0CF;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    color: #3B4252;
+  background-color: #88c0cf;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  color: #3b4252;
 }
 
 .bg-nord-accent:hover {
-    background-color: #434b5f;
-    color: #88C0CF;
+  background-color: #434b5f;
+  color: #88c0cf;
 }
 
 .bg-nord-accent:active {
-    background-color: #3B4252;
-    color: #88C0CF;
+  background-color: #3b4252;
+  color: #88c0cf;
+}
+
+.bg-nord-accent-red {
+  background-color: #bf616a;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  color: #ffffff;
+}
+
+.bg-nord-accent-red:hover {
+  background-color: #434b5f;
+  color: #bf616a;
+}
+
+.bg-nord-accent-red:active {
+  background-color: #3b4252;
+  color: #bf616a;
 }
 
 .text-nord-muted {
-    color: #88C0CFAA;
+  color: #88c0cfaa;
+}
+
+.text-nord {
+  color: #88c0cf;
 }
 
 .form-text {
-    color: #88C0CF;
+  color: #88c0cf;
 }
