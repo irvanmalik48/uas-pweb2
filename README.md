@@ -15,6 +15,19 @@ And the other one is by cloning the repository, run your MariaDB and Apache inst
 ```bash
 php -S 127.0.0.1:8080
 ```
+> Open the website with trailing slash, else it won't work.
+
+XAMPP:
+
+```bash
+localhost/uts-pweb2/
+```
+
+Custom LAMP stack:
+
+```bash
+localhost:8080/
+```
 
 Passwords for testing:
 
