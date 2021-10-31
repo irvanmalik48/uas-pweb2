@@ -15,7 +15,7 @@ function setImage($dir, $input, $fallback)
             $filetype == "webp" ||
             $filetype == "gif";
 
-        $checksize = $_FILES["file"]["size"] > 1500000;
+        $checksize = $input["size"] > 1500000;
 
         $checkfile = file_exists($file);
 
