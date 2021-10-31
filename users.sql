@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS `users`;
+
 CREATE TABLE `users` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `uname` varchar(255) NOT NULL,
