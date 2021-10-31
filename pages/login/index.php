@@ -31,7 +31,7 @@
                     <div class="container-fluid p-0">
                         <button type="submit" name="login" class="btn btn-light bg-nord-accent float-end">Login</button>
                     </div>
-                    <a href="/pages/register" class="btn btn-light bg-nord-accent float-start">Belum punya akun?</a>
+                    <a href="../register/" class="btn btn-light bg-nord-accent float-start">Belum punya akun?</a>
                 </form>
             </div>
         </div>

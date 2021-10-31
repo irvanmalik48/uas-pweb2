@@ -41,7 +41,7 @@
                     <div class="container-fluid p-0">
                         <button type="submit" name="register" class="btn btn-light bg-nord-accent float-end">Register</button>
                     </div>
-                    <a href="/pages/login" class="btn btn-light bg-nord-accent float-start">Sudah punya akun?</a>
+                    <a href="../login/" class="btn btn-light bg-nord-accent float-start">Sudah punya akun?</a>
                 </form>
             </div>
         </div>

@@ -1,6 +1,8 @@
 <?php
 require_once "../db/index.php";
 
+ob_start();
+
 if (isset($_POST["login"])) {
     $uname = filter_input(INPUT_POST, "uname", FILTER_SANITIZE_STRING);
     $pass = $_POST["pass"];
@@ -21,9 +23,9 @@ if (isset($_POST["login"])) {
         if (password_verify($pass, $user["pass"])) {
             session_start();
             $_SESSION["user"] = $user;
-            header("Location: /");
+            header("Location: ../../");
         } else {
-            header("Location: /pages/login/");
+            header("Location: ../../pages/login/");
         }
     }
 }

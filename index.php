@@ -2,8 +2,10 @@
 
 session_start();
 
+ob_start();
+
 if (!isset($_SESSION["user"])) {
-    header("Location: /pages/login");
+    header("Location: pages/login/");
     exit();
 }
 ?>
@@ -62,8 +64,8 @@ if (!isset($_SESSION["user"])) {
                         </p>
                     </div>
                     <div class="container-fluid px-0 py-0">
-                        <a href="/pages/edit" class="btn btn-light bg-nord-accent float-start m-2">Edit Profil</a>
-                        <a href="/pages/logout" class="btn btn-light bg-nord-accent-red float-end m-2">Logout</a>
+                        <a href="pages/edit/" class="btn btn-light bg-nord-accent float-start m-2">Edit Profil</a>
+                        <a href="pages/logout/" class="btn btn-light bg-nord-accent-red float-end m-2">Logout</a>
                     </div>
                 </div>
             </div>

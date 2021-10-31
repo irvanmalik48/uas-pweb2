@@ -1,6 +1,8 @@
 <?php
 require_once "../db/index.php";
 
+ob_start();
+
 function setImage($dir, $input, $fallback)
 {
     if (isset($input["name"])) {
@@ -20,14 +22,14 @@ function setImage($dir, $input, $fallback)
         $checkfile = file_exists($file);
 
         if ($file == $dir || !$checktype || $checksize || $checkfile) {
-            return isset($fallback) ? $fallback : "/assets/img/default.jpg";
+            return isset($fallback) ? $fallback : "assets/img/default.jpg";
         }
 
         move_uploaded_file($input["tmp_name"], $file);
 
-        return $file;
+        return substr($file, 6);
     } else {
-        return "/assets/img/default.jpg";
+        return "assets/img/default.jpg";
     }
 }
 
@@ -68,7 +70,7 @@ if (isset($_POST["edit"])) {
     if ($saved) {
         session_start();
         $_SESSION["user"] = $user;
-        header("Location: /");
+        header("Location: ../../");
     }
 } elseif (isset($_POST["editImage"])) {
     $sql = "UPDATE users
@@ -103,6 +105,6 @@ if (isset($_POST["edit"])) {
     if ($saved) {
         session_start();
         $_SESSION["user"] = $user;
-        header("Location: /");
+        header("Location: ../../");
     }
 }

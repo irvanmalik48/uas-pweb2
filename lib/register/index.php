@@ -1,6 +1,8 @@
 <?php
 require_once "../db/index.php";
 
+ob_start();
+
 if (isset($_POST["register"])) {
     $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
     $uname = filter_input(INPUT_POST, "uname", FILTER_SANITIZE_STRING);
@@ -26,7 +28,7 @@ if (isset($_POST["register"])) {
             ":email" => $email,
         ]);
         if ($saved) {
-            header("Location: /pages/login/");
+            header("Location: ../../pages/login/");
         }
     } else {
         exit("Error: Username telah digunakan.");

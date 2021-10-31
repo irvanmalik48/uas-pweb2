@@ -1,8 +1,9 @@
 <?php
 session_start();
 
+ob_start();
 if (!isset($_SESSION["user"])) {
-    header("Location: /pages/login");
+    header("Location: ../login/");
     exit();
 }
 ?>
@@ -85,7 +86,7 @@ if (!isset($_SESSION["user"])) {
                         <button type="submit" name="edit" class="btn btn-light bg-nord-accent float-end">Save</button>
                     </div>
                 </form>
-                <a href="/" class="btn btn-light bg-nord-accent float-start">Cancel</a>
+                <a href="../../" class="btn btn-light bg-nord-accent float-start">Cancel</a>
             </div>
         </div>
     </div>
