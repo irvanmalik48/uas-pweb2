@@ -9,9 +9,12 @@ if (isset($_POST["register"])) {
     $pass = password_hash($_POST["pass"], PASSWORD_DEFAULT);
     $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
 
-    $stmt = $db->prepare("SELECT uname FROM users WHERE uname=:uname");
+    $stmt = $db->prepare(
+        "SELECT uname, email FROM users WHERE uname=:uname OR email=:email"
+    );
     $stmt->execute([
         ":uname" => $uname,
+        ":email" => $email,
     ]);
 
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -31,6 +34,9 @@ if (isset($_POST["register"])) {
             header("Location: ../../pages/login/");
         }
     } else {
-        exit("Error: Username telah digunakan.");
+        session_start();
+        $_SESSION["error"] = "Username/Email telah digunakan.";
+
+        header("Location: ../../pages/register/");
     }
 }
