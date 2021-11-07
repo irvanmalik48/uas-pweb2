@@ -78,6 +78,14 @@ body {
   color: #bf616a;
 }
 
+.bg-nord-accent-red-nohover {
+  background-color: #bf616a;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  color: #ffffff;
+}
+
 .text-nord-muted {
   color: #88c0cfaa;
 }
