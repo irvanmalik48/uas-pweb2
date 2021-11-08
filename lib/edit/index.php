@@ -33,7 +33,8 @@ function setImage($dir, $input, $fallback)
     }
 }
 
-function edit($db, $arr) {
+function edit($db, $arr)
+{
     $sql = "UPDATE users
             SET
             uname = :uname,
@@ -75,10 +76,10 @@ function edit($db, $arr) {
         session_start();
         $_SESSION["user"] = $user;
         if (empty($_SESSION["token"])) {
-            if (function_exists('random_bytes')) {
-                $_SESSION['token'] = bin2hex(random_bytes(32));
+            if (function_exists("random_bytes")) {
+                $_SESSION["token"] = bin2hex(random_bytes(32));
             } else {
-                $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));
+                $_SESSION["token"] = bin2hex(openssl_random_pseudo_bytes(32));
             }
         }
     }
@@ -88,18 +89,26 @@ if (isset($_POST["edit"]) && hash_equals($_SESSION["token"], $_POST["token"])) {
     $old_uname = $_SESSION["user"]["uname"];
     $old_email = $_SESSION["user"]["email"];
 
-    $arr = array(
+    $arr = [
         "id" => $_POST["id"],
         "uname" => filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING),
         "email" => filter_input(INPUT_POST, "email", FILTER_SANITIZE_STRING),
         "name" => filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING),
         "nim" => filter_input(INPUT_POST, "nim", FILTER_SANITIZE_STRING),
-        "faculty" => filter_input(INPUT_POST, "faculty", FILTER_SANITIZE_STRING),
+        "faculty" => filter_input(
+            INPUT_POST,
+            "faculty",
+            FILTER_SANITIZE_STRING
+        ),
         "major" => filter_input(INPUT_POST, "major", FILTER_SANITIZE_STRING),
-        "description" => filter_input(INPUT_POST, "description", FILTER_SANITIZE_STRING),
-    );
+        "description" => filter_input(
+            INPUT_POST,
+            "description",
+            FILTER_SANITIZE_STRING
+        ),
+    ];
 
-    $same = ($old_email == $arr["email"] && $old_uname == $arr["uname"]);
+    $same = $old_email == $arr["email"] && $old_uname == $arr["uname"];
 
     if ($old_email != $arr["email"] && $old_uname == $arr["uname"]) {
         $sql = "SELECT * FROM users WHERE email=:email";
@@ -163,7 +172,10 @@ if (isset($_POST["edit"]) && hash_equals($_SESSION["token"], $_POST["token"])) {
         edit($db, $arr);
         header("Location: ../../");
     }
-} elseif (isset($_POST["editImage"]) && hash_equals($_SESSION["token"], $_POST["token"])) {
+} elseif (
+    isset($_POST["editImage"]) &&
+    hash_equals($_SESSION["token"], $_POST["token"])
+) {
     $sql = "UPDATE users
             SET
             image = :image
@@ -197,15 +209,19 @@ if (isset($_POST["edit"]) && hash_equals($_SESSION["token"], $_POST["token"])) {
         session_start();
         $_SESSION["user"] = $user;
         if (empty($_SESSION["token"])) {
-            if (function_exists('random_bytes')) {
-                $_SESSION['token'] = bin2hex(random_bytes(32));
+            if (function_exists("random_bytes")) {
+                $_SESSION["token"] = bin2hex(random_bytes(32));
             } else {
-                $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));
+                $_SESSION["token"] = bin2hex(openssl_random_pseudo_bytes(32));
             }
         }
         header("Location: ../../");
     }
-} elseif (isset($_POST["editPassword"]) && hash_equals($_SESSION["token"], $_POST["token"]) && $_POST["pass"] == $_POST["confPass"]) {
+} elseif (
+    isset($_POST["editPassword"]) &&
+    hash_equals($_SESSION["token"], $_POST["token"]) &&
+    $_POST["pass"] == $_POST["confPass"]
+) {
     $sql = "UPDATE users
             SET
             pass = :pass
@@ -235,10 +251,10 @@ if (isset($_POST["edit"]) && hash_equals($_SESSION["token"], $_POST["token"])) {
         session_start();
         $_SESSION["user"] = $user;
         if (empty($_SESSION["token"])) {
-            if (function_exists('random_bytes')) {
-                $_SESSION['token'] = bin2hex(random_bytes(32));
+            if (function_exists("random_bytes")) {
+                $_SESSION["token"] = bin2hex(random_bytes(32));
             } else {
-                $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));
+                $_SESSION["token"] = bin2hex(openssl_random_pseudo_bytes(32));
             }
         }
         header("Location: ../../");
