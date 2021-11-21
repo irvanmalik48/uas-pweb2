@@ -1,2 +1,4 @@
-assets/css/bootstrap.*
-assets/js/*
+system/*
+tests/*
+writable/*
+public/*
