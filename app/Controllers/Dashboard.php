@@ -4,13 +4,9 @@ namespace App\Controllers;
 
 use App\Models\Users;
 
-class Home extends BaseController
+class Dashboard extends BaseController
 {
     public function index() {
-        if (!(session()->has('logged_in') && (session()->get('logged_in') === TRUE))) {
-            return redirect()->to('/login');
-        }
-
         $userId = session()->get('user_id');
 
         $data = $this->Users->where('id', $userId)->first();
