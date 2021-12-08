@@ -21,8 +21,8 @@ class Login extends BaseController
     {
         $session = session();
         $model = $this->Users;
-        $email = $this->request->getVar("email");
-        $password = $this->request->getVar("pass");
+        $email = $this->request->getPost("email");
+        $password = $this->request->getPost("pass");
         $data = $model->where("email", $email)->first();
 
         if (!$data) {

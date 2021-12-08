@@ -38,11 +38,11 @@ class Register extends BaseController
 
         $model = $this->Users;
         $data = [
-            "uname" => $this->request->getVar("uname"),
-            "name" => $this->request->getVar("name"),
-            "email" => $this->request->getVar("email"),
+            "uname" => $this->request->getPost("uname"),
+            "name" => $this->request->getPost("name"),
+            "email" => $this->request->getPost("email"),
             "pass" => password_hash(
-                $this->request->getVar("pass"),
+                $this->request->getPost("pass"),
                 PASSWORD_DEFAULT
             ),
         ];
