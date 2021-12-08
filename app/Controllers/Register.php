@@ -1,9 +1,16 @@
 <?php namespace App\Controllers;
 
 use App\Models\Users;
- 
+use CodeIgniter\HTTP\RedirectResponse;
+
 class Register extends BaseController
 {
+
+    public function __construct()
+    {
+        $this->Users = new Users();
+    }
+
     public function index()
     {
         helper(['form']);
@@ -11,7 +18,7 @@ class Register extends BaseController
         echo view('register', $data);
     }
  
-    public function save()
+    public function save(): RedirectResponse
     {
         helper(['form']);
         $rules = [
@@ -26,7 +33,7 @@ class Register extends BaseController
             echo view('register', $data);
         }
 
-        $model = new Users();
+        $model = $this->Users;
         $data = [
             'uname' => $this->request->getVar('uname'),
             'name' => $this->request->getVar('name'),

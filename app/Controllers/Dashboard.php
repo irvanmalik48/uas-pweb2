@@ -1,11 +1,15 @@
 <?php
 
 namespace App\Controllers;
-
 use App\Models\Users;
 
 class Dashboard extends BaseController
 {
+    public function __construct()
+    {
+        $this->Users = new Users();
+    }
+
     public function index() {
         $userId = session()->get('user_id');
 

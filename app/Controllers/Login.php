@@ -2,17 +2,23 @@
 
 namespace App\Controllers;
 use App\Models\Users;
- 
+use CodeIgniter\HTTP\RedirectResponse;
+
 class Login extends BaseController
 {
+    public function __construct()
+    {
+        $this->Users = new Users();
+    }
+
     public function index() {
         helper(['form']);
         echo view('login');
-    } 
+    }
  
-    public function auth() {
+    public function auth(): RedirectResponse {
         $session = session();
-        $model = new Users();
+        $model = $this->Users;
         $email = $this->request->getVar('email');
         $password = $this->request->getVar('pass');
         $data = $model->where('email', $email)->first();
