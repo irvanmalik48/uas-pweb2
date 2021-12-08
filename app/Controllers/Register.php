@@ -18,8 +18,7 @@ class Register extends BaseController
             'uname' => 'required|min_length[3]|max_length[20]|is_unique[users.uname]',
             'name' => 'required|min_length[3]|max_length[100]',
             'email' => 'required|min_length[6]|max_length[100]|valid_email|is_unique[users.email]',
-            'password' => 'required|min_length[8]|max_length[200]',
-            'confpassword' => 'matches[password]'
+            'password' => 'required|min_length[8]|max_length[200]'
         ];
          
         if(!$this->validate($rules)) {
@@ -35,7 +34,7 @@ class Register extends BaseController
             'pass' => password_hash($this->request->getVar('pass'), PASSWORD_DEFAULT)
         ];
         $model->save($data);
-        
+
         return redirect()->to('/login');
     }
  
