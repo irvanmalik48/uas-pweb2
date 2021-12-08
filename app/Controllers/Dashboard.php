@@ -27,9 +27,9 @@ class Dashboard extends BaseController
             "user_major" => $data["major"],
             "user_nim" => $data["nim"],
             "user_image" => $data["image"],
-            "logged_in" => true,
+            "logged_in" => TRUE,
         ];
 
-        return view("/dashboard", $user);
+        return view("dashboard", $user);
     }
 }
