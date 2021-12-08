@@ -40,7 +40,7 @@ class Login extends BaseController
             'user_email' => $data['email'],
             'logged_in' => TRUE
         ];
-        
+
         $session->set($ses_data);
 
         return redirect()->to('/dashboard');
