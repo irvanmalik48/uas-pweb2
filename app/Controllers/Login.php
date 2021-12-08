@@ -11,44 +11,46 @@ class Login extends BaseController
         $this->Users = new Users();
     }
 
-    public function index() {
-        helper(['form']);
-        echo view('login');
+    public function index()
+    {
+        helper(["form"]);
+        echo view("login");
     }
- 
-    public function auth(): RedirectResponse {
+
+    public function auth(): RedirectResponse
+    {
         $session = session();
         $model = $this->Users;
-        $email = $this->request->getVar('email');
-        $password = $this->request->getVar('pass');
-        $data = $model->where('email', $email)->first();
+        $email = $this->request->getVar("email");
+        $password = $this->request->getVar("pass");
+        $data = $model->where("email", $email)->first();
 
         if (!$data) {
-            $data = $model->where('uname', $email)->first();
+            $data = $model->where("uname", $email)->first();
         }
 
         if (!$data) {
-            $session->setFlashdata('msg', 'Email/Username not found');
-            return redirect()->to('/login');
+            $session->setFlashdata("msg", "Email/Username not found");
+            return redirect()->to("/login");
         }
 
-        $pass = $data['pass'];
+        $pass = $data["pass"];
         $verify_pass = password_verify($password, $pass);
 
         if (!$verify_pass) {
-            $session->setFlashdata('msg', 'Wrong Password');
-            return redirect()->to('/login');
+            $session->setFlashdata("msg", "Wrong Password");
+            return redirect()->to("/login");
         }
 
         $ses_data = [
-            'user_id' => $data['id'],
-            'user_uname' => $data['uname'],
-            'user_email' => $data['email'],
-            'logged_in' => TRUE
+            "user_id" => $data["id"],
+            "user_uname" => $data["uname"],
+            "user_email" => $data["email"],
+            "logged_in" => true,
         ];
 
         $session->set($ses_data);
 
-        return redirect()->to('/dashboard');
+        return redirect()->to("/dashboard");
     }
 }
