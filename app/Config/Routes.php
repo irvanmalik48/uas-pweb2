@@ -36,6 +36,7 @@ $routes->get('/dashboard', 'Dashboard::index', ['filter' => 'auth']);
 $routes->get('/login', 'Login::index', ['filter' => 'logged_in']);
 $routes->get('/register', 'Register::index', ['filter' => 'logged_in']);
 $routes->get('/edit', 'Edit::index', ['filter' => 'auth']);
+$routes->get('/logout', 'Logout::index');
 
 /*
  * --------------------------------------------------------------------
