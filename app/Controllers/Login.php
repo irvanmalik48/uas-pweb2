@@ -37,16 +37,10 @@ class Login extends BaseController
         $ses_data = [
             'user_id' => $data['id'],
             'user_uname' => $data['uname'],
-            'user_name' => $data['name'],
-            'user_nim' => $data['nim'],
             'user_email' => $data['email'],
-            'user_desc' => $data['description'],
-            'user_faculty' => $data['faculty'],
-            'user_major' => $data['major'],
-            'user_nim' => $data['nim'],
-            'user_image' => $data['image'],
             'logged_in' => TRUE
         ];
+        
         $session->set($ses_data);
 
         return redirect()->to('/dashboard');
