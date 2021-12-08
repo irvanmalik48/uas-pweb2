@@ -22,21 +22,21 @@ class Register extends BaseController
             'confpassword' => 'matches[password]'
         ];
          
-        if($this->validate($rules)){
-            $model = new Users();
-            $data = [
-                'uname' => $this->request->getVar('uname'),
-                'name' => $this->request->getVar('name'),
-                'email' => $this->request->getVar('email'),
-                'pass' => password_hash($this->request->getVar('pass'), PASSWORD_DEFAULT)
-            ];
-            $model->save($data);
-            return redirect()->to('/login');
-        }else{
+        if(!$this->validate($rules)) {
             $data['validation'] = $this->validator;
             echo view('register', $data);
         }
-         
+
+        $model = new Users();
+        $data = [
+            'uname' => $this->request->getVar('uname'),
+            'name' => $this->request->getVar('name'),
+            'email' => $this->request->getVar('email'),
+            'pass' => password_hash($this->request->getVar('pass'), PASSWORD_DEFAULT)
+        ];
+        $model->save($data);
+        
+        return redirect()->to('/login');
     }
  
 }
