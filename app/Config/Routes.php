@@ -36,6 +36,9 @@ $routes->get('/dashboard', 'Dashboard::index', ['filter' => 'auth']);
 $routes->get('/login', 'Login::index', ['filter' => 'logged_in']);
 $routes->get('/register', 'Register::index', ['filter' => 'logged_in']);
 $routes->get('/edit', 'Edit::index', ['filter' => 'auth']);
+$routes->get('/edit/user', 'Edit:user', ['filter' => 'auth']);
+$routes->get('/edit/image', 'Edit:image', ['filter' => 'auth']);
+$routes->get('/edit/pass', 'Edit:pass', ['filter' => 'auth']);
 $routes->get('/logout', 'Logout::index');
 
 /*
