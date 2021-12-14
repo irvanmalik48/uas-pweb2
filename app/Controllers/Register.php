@@ -46,8 +46,9 @@ class Register extends BaseController
                 PASSWORD_DEFAULT
             ),
         ];
+
         $model->save($data);
 
-        return redirect()->to("/login");
+        return redirect()->to("login");
     }
 }
