@@ -7,6 +7,7 @@
     <script defer src="/assets/js/bootstrap.bundle.min.js"></script>
     <title>My Profile</title>
     <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 </head>
 <body class="d-flex justify-content-center align-items-center">
     <div class="parallax"></div>
@@ -22,9 +23,7 @@
                             <?= $name ?>
                         </h5>
                         <h6 class="card-subtitle mb-2 text-nord-muted">
-                            <?= $email .
-                                " | @" .
-                                $uname ?>
+                            <?= $email . " | @" . $uname ?>
                         </h6>
                         <p class="text-nord my-0 p-0">
                             <strong>NIM</strong>
