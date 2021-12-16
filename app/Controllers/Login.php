@@ -31,7 +31,7 @@ class Login extends BaseController
 
         if (!$data) {
             $session->setFlashdata("msg", "Email/Username not found");
-            return redirect()->to("/login");
+            return redirect()->to("login");
         }
 
         $pass = $data["pass"];
@@ -39,7 +39,7 @@ class Login extends BaseController
 
         if (!$verify_pass) {
             $session->setFlashdata("msg", "Wrong Password");
-            return redirect()->to("/login");
+            return redirect()->to("login");
         }
 
         $ses_data = [
