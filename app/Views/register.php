@@ -3,9 +3,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <script defer src="assets/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script defer src="/assets/js/bootstrap.bundle.min.js"></script>
     <title>Register</title>
 </head>
 <body>
@@ -17,7 +17,7 @@
                 <h5 class="card-title text-center">
                     Register
                 </h5>
-                <form action="register/save" method="post" enctype="multipart/form-data">
+                <form action="/register/save" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="name" class="form-label text-white h6">Nama Lengkap</label>
                         <input type="text" class="form-control" id="name" name="name" aria-describedby="nameSection" required/>

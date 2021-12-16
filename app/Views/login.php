@@ -3,9 +3,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <script defer src="assets/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script defer src="/assets/js/bootstrap.bundle.min.js"></script>
     <title>Login</title>
 </head>
 <body>
@@ -17,7 +17,7 @@
                 <h5 class="card-title text-center">
                     Login
                 </h5>
-                <form action="login/auth" method="post" enctype="multipart/form-data">
+                <form action="/login/auth" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="uname" class="form-label text-white h6">Username/Email</label>
                         <input type="text" class="form-control" id="uname" name="uname" aria-describedby="unameSection" required/>
@@ -36,7 +36,7 @@
                     <div class="container-fluid p-0">
                         <button type="submit" name="login" class="btn btn-light bg-nord-accent float-end">Login</button>
                     </div>
-                    <a href="../register/" class="btn btn-light bg-nord-accent float-start">Belum punya akun?</a>
+                    <a href="/register" class="btn btn-light bg-nord-accent float-start">Belum punya akun?</a>
                 </form>
             </div>
         </div>
