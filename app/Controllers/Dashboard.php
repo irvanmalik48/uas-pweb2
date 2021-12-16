@@ -10,7 +10,7 @@ class Dashboard extends BaseController
         $this->Users = new Users();
     }
 
-    public function index()
+    public function index(): string
     {
         $userId = session()->get("user_id");
 
@@ -27,7 +27,7 @@ class Dashboard extends BaseController
             "major" => $data["major"],
             "nim" => $data["nim"],
             "image" => $data["image"],
-            "logged_in" => TRUE,
+            "logged_in" => true,
         ];
 
         return view("dashboard", $user);
