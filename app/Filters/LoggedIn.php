@@ -10,7 +10,7 @@ class LoggedIn implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null) {
         if ((session()->has('logged_in') && (session()->get('logged_in') === TRUE))) {
-            return redirect()->to('/dashboard');
+            return redirect()->to('dashboard');
         }
     }
 
