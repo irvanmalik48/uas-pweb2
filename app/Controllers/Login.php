@@ -20,26 +20,25 @@ class Login extends BaseController
     public function auth(): RedirectResponse
     {
         $session = session();
-        $model = $this->Users;
-        $email = $this->request->getPost("email");
+        $uname = $this->request->getPost("uname");
         $password = $this->request->getPost("pass");
-        $data = $model->where("email", $email)->first();
+        $data = $this->Users->where("uname", $uname)->first();
 
         if (!$data) {
-            $data = $model->where("uname", $email)->first();
+            $data = $this->Users->where("email", $uname)->first();
         }
 
         if (!$data) {
             $session->setFlashdata("msg", "Email/Username not found");
-            return redirect()->to("login");
+            return redirect()->to("/login");
         }
-
+        
         $pass = $data["pass"];
         $verify_pass = password_verify($password, $pass);
 
         if (!$verify_pass) {
             $session->setFlashdata("msg", "Wrong Password");
-            return redirect()->to("login");
+            return redirect()->to("/login");
         }
 
         $ses_data = [
@@ -51,6 +50,6 @@ class Login extends BaseController
 
         $session->set($ses_data);
 
-        return redirect()->to("dashboard");
+        return redirect()->to("/");
     }
 }
