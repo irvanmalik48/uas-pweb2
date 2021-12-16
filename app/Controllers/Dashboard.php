@@ -17,16 +17,16 @@ class Dashboard extends BaseController
         $data = $this->Users->where("id", $userId)->first();
 
         $user = [
-            "user_id" => $data["id"],
-            "user_uname" => $data["uname"],
-            "user_name" => $data["name"],
-            "user_nim" => $data["nim"],
-            "user_email" => $data["email"],
-            "user_desc" => $data["description"],
-            "user_faculty" => $data["faculty"],
-            "user_major" => $data["major"],
-            "user_nim" => $data["nim"],
-            "user_image" => $data["image"],
+            "id" => $data["id"],
+            "uname" => $data["uname"],
+            "name" => $data["name"],
+            "nim" => $data["nim"],
+            "email" => $data["email"],
+            "description" => $data["description"],
+            "faculty" => $data["faculty"],
+            "major" => $data["major"],
+            "nim" => $data["nim"],
+            "image" => $data["image"],
             "logged_in" => TRUE,
         ];
 
