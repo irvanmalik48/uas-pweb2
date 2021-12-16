@@ -88,7 +88,7 @@ class Edit extends BaseController
 
         session()->set($ses_data);
         
-        return redirect()->to("dashboard");
+        return redirect()->to("/");
     }
 
     public function pass() {
@@ -117,7 +117,7 @@ class Edit extends BaseController
 
         $this->Users->update($userId, $data);
 
-        return redirect()->to("dashboard");
+        return redirect()->to("/");
     }
 
     public function image() {
@@ -145,6 +145,6 @@ class Edit extends BaseController
 
         $this->Users->update($userId, $data);
 
-        return redirect()->to("dashboard");
+        return redirect()->to("/");
     }
 }
