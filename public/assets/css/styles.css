@@ -3,6 +3,14 @@ body {
     color: #ffffff;
   }
   
+ul {
+  margin: 0;
+}
+
+.margin-btm {
+  margin-bottom: 14px;
+}
+
   .parallax {
     overflow: hidden;
     position: relative;
