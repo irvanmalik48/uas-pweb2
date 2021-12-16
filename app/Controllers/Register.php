@@ -36,7 +36,6 @@ class Register extends BaseController
             echo view("register", $data);
         }
 
-        $model = $this->Users;
         $data = [
             "uname" => $this->request->getPost("uname"),
             "name" => $this->request->getPost("name"),
@@ -47,8 +46,8 @@ class Register extends BaseController
             ),
         ];
 
-        $model->save($data);
+        $this->Users->save($data);
 
-        return redirect()->to("login");
+        return redirect()->to("/login");
     }
 }
