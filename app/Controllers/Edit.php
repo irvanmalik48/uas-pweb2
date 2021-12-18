@@ -85,7 +85,7 @@ class Edit extends BaseController
                 "name" => $this->request->getPost("name"),
                 "nim" => $this->request->getPost("nim"),
                 "email" => $this->request->getPost("email"),
-                "desc" => $this->request->getPost("desc"),
+                "description" => $this->request->getPost("description"),
                 "faculty" => $this->request->getPost("faculty"),
                 "major" => $this->request->getPost("major"),
             ];
